@@ -20,7 +20,25 @@ submitItem.addEventListener('click', (e) => {
     
     var li = document.createElement('li');
     var textNode=document.createTextNode(`${userName}-${userEmail}-${userPhone}`);
+    var button=document.createElement('button');
+    var deleteText=document.createTextNode('Delete');
+    var span=document.createElement('span');
 
     li.appendChild(textNode);
-    container.appendChild(li);
+    button.appendChild(deleteText);
+    span.appendChild(li);
+    span.appendChild(button);
+    container.appendChild(span);
+    
+
+    button.addEventListener('click',(e)=> {
+        e.preventDefault();
+        var parentEle=button.parentElement;
+        console.log(parentEle);
+        parentEle.remove();        
+        var str =parentEle.firstElementChild.innerText;
+        const arr=str.split('-');
+        localStorage.removeItem(arr[1]);        
+
+    })
 })
